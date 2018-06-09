@@ -4,13 +4,32 @@ using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private PlayerInit playerInit;
+
+    [SerializeField]
+    private GameObject playerPrefab;
+
+    private void Awake()
+    {
+        playerInit = this.gameObject.GetComponent<PlayerInit>();
+
+    }
+
+    private void Start()
+    {
+        playerPrefab = playerInit.getPrefabPlayer();
+        SpawnPlayer();
+        
+    }
+
+    private void SpawnPlayer()
+    {
+        GameObject playerInstantiated = Instantiate(playerPrefab) as GameObject;
+
+        playerInstantiated.transform.rotation = this.transform.rotation;
+        playerInstantiated.transform.position = this.transform.position;
+        playerInstantiated.SetActive(true);
+
+    }
+
 }

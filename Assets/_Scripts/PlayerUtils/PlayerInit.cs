@@ -4,13 +4,27 @@ using UnityEngine;
 
 public class PlayerInit : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private readonly string prefabPlayerPath = "prefabs/Player";
+
+    [SerializeField]
+    GameObject prefabPlayer;
+
+    private void Awake()
+    {
+        prefabPlayer = Resources.Load(prefabPlayerPath) as GameObject;
+
+    }
+
+    public GameObject getPrefabPlayer()
+    {
+        if (prefabPlayer != null)
+        {
+            return prefabPlayer;
+        } else
+        {
+            prefabPlayer = Resources.Load(prefabPlayerPath) as GameObject;
+            return prefabPlayer;
+        }
+    }
+
 }
